@@ -11,15 +11,16 @@ import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
-  static int _selectedIndex = 0;
+
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
+  static int selectedIndex = 3;
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> _screens = [
+    List<Map<String, dynamic>> screens = [
       {
         'Page': const HomeScreen(),
         'Title': 'Home Screen',
@@ -38,26 +39,26 @@ class _BottomBarState extends State<BottomBar> {
       },
     ];
 
-    void _selectedPage(int index) {
+    void selectedPage(int index) {
       setState(() {
-        BottomBar._selectedIndex = index;
+        selectedIndex = index;
       });
     }
 
     final themeState = Provider.of<DarkThemeProvider>(context);
     bool isDark = themeState.getDarkTheme;
     return Scaffold(
-      appBar: AppBar(
+      /*  appBar: AppBar(
         elevation: 0.0,
         backgroundColor: isDark ? Colors.blue.withOpacity(0) : Colors.blue,
         title: Text(
-          '${_screens[BottomBar._selectedIndex]['Title']}',
+          '${screens[selectedIndex]['Title']}',
           style: const TextStyle(
             color: Colors.white,
           ),
         ),
-      ),
-      body: _screens[BottomBar._selectedIndex]['Page'],
+      ), */
+      body: screens[selectedIndex]['Page'],
       bottomNavigationBar: StylishBottomBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
@@ -70,8 +71,8 @@ class _BottomBarState extends State<BottomBar> {
           // bubbleFillStyle: BubbleFillStyle.outlined,
           opacity: 0.3,
         ),
-        currentIndex: BottomBar._selectedIndex,
-        onTap: _selectedPage,
+        currentIndex: selectedIndex,
+        onTap: selectedPage,
         items: [
           BottomBarItem(
             icon: const Icon(IconlyBroken.home),
