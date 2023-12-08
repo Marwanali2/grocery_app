@@ -13,7 +13,14 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+  final TextEditingController _addressTextController =
+      TextEditingController(text: '');
   @override
+  void dispose() {
+    _addressTextController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
     return SafeArea(
@@ -68,7 +75,9 @@ class _UserScreenState extends State<UserScreen> {
             MyListTile(
               titleText: 'Address',
               icon: IconlyLight.profile,
-              onTap: () {},
+              onTap: () async {
+                await showDialogMethod(context, _addressTextController);
+              },
             ),
             MyListTile(
               titleText: 'Orders',
