@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/provider/dark_theme_provider.dart';
 import 'package:grocery_app/screens/cart_screen.dart';
 import 'package:grocery_app/screens/categories_screen.dart';
 import 'package:grocery_app/screens/home_screen.dart';
 import 'package:grocery_app/screens/user_screen.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
@@ -17,20 +19,45 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
-    List _screens = [
-      const HomeScreen(),
-      const CategoriesScreen(),
-      const CartScreen(),
-      const UserScreen(),
+    List<Map<String, dynamic>> _screens = [
+      {
+        'Page': const HomeScreen(),
+        'Title': 'Home Screen',
+      },
+      {
+        'Page': const CategoriesScreen(),
+        'Title': 'Categories Screen',
+      },
+      {
+        'Page': const CartScreen(),
+        'Title': 'Cart Screen',
+      },
+      {
+        'Page': const UserScreen(),
+        'Title': 'User Screen',
+      },
     ];
+
     void _selectedPage(int index) {
       setState(() {
         BottomBar._selectedIndex = index;
       });
     }
 
+    final themeState = Provider.of<DarkThemeProvider>(context);
+    bool isDark = themeState.getDarkTheme;
     return Scaffold(
-      body: _screens[BottomBar._selectedIndex],
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: isDark ? Colors.blue.withOpacity(0) : Colors.blue,
+        title: Text(
+          '${_screens[BottomBar._selectedIndex]['Title']}',
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+      body: _screens[BottomBar._selectedIndex]['Page'],
       bottomNavigationBar: StylishBottomBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
