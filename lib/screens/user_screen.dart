@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grocery_app/provider/dark_theme_provider.dart';
 import 'package:grocery_app/widgets/list_tile.dart';
+import 'package:grocery_app/widgets/show_dialog.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
@@ -76,7 +77,7 @@ class _UserScreenState extends State<UserScreen> {
               titleText: 'Address',
               icon: IconlyLight.profile,
               onTap: () async {
-                await showDialogMethod(context, _addressTextController);
+                await showAddressDialogMethod(context, _addressTextController);
               },
             ),
             MyListTile(
@@ -124,7 +125,9 @@ class _UserScreenState extends State<UserScreen> {
             MyListTile(
               titleText: 'Log out',
               icon: IconlyLight.logout,
-              onTap: () {},
+              onTap: () async {
+                await showLogOutDialogMethod(context);
+              },
             ),
           ],
         ),
