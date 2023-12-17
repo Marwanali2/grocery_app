@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../services/dark_theme_prefs.dart';
+import 'package:grocery_app/shared_pref/dark_theme_prefs.dart';
 
 class DarkThemeProvider extends ChangeNotifier {
   bool _darkTheme = false;

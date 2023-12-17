@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/provider/dark_theme_provider.dart';
-import 'package:grocery_app/screens/cart_screen.dart';
-import 'package:grocery_app/screens/categories_screen.dart';
-import 'package:grocery_app/screens/home_screen.dart';
-import 'package:grocery_app/screens/user_screen.dart';
+import 'package:grocery_app/features/cart/presentation/views/cart_screen.dart';
+import 'package:grocery_app/features/categories/presentation/views/categories_screen.dart';
+import 'package:grocery_app/features/home/presentation/views/home_screen.dart';
+import 'package:grocery_app/features/user_profile/presentation/views/user_screen.dart';
 import 'package:iconly/iconly.dart';
-import 'package:provider/provider.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
@@ -17,7 +15,7 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  static int selectedIndex = 3;
+  static int selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> screens = [
@@ -45,8 +43,6 @@ class _BottomBarState extends State<BottomBar> {
       });
     }
 
-    final themeState = Provider.of<DarkThemeProvider>(context);
-    bool isDark = themeState.getDarkTheme;
     return Scaffold(
       /*  appBar: AppBar(
         elevation: 0.0,

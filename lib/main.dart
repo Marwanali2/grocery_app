@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grocery_app/consts/theme_data.dart';
+import 'package:grocery_app/core/utils/theme/theme_data.dart';
+import 'package:grocery_app/features/bottom_bar.dart';
 import 'package:grocery_app/provider/dark_theme_provider.dart';
-import 'package:grocery_app/screens/bottom_bar.dart';
-import 'package:grocery_app/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -38,7 +37,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isDarkTheme = false;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grocery_app/features/user_profile/presentation/views/widgets/list_tile.dart';
+import 'package:grocery_app/features/user_profile/presentation/views/widgets/show_dialog.dart';
 import 'package:grocery_app/provider/dark_theme_provider.dart';
-import 'package:grocery_app/widgets/list_tile.dart';
-import 'package:grocery_app/widgets/show_dialog.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
@@ -13,9 +13,12 @@ class UserScreen extends StatefulWidget {
   State<UserScreen> createState() => _UserScreenState();
 }
 
-class _UserScreenState extends State<UserScreen> {
+mixin UserScreenMixin {
   final TextEditingController _addressTextController =
       TextEditingController(text: '');
+}
+
+class _UserScreenState extends State<UserScreen> with UserScreenMixin {
   @override
   void dispose() {
     _addressTextController.dispose();

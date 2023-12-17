@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
 
 Future<dynamic> showAddressDialogMethod(
     BuildContext context, TextEditingController _addressTextController) {
